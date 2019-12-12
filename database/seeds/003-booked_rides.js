@@ -5,7 +5,7 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('booked_rides').insert([
-        {id: 1, passager_id: 1, ride_id: 1},
+        {passager_id: 2, ride_id: 1},
       ]);
     });
 };

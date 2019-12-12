@@ -9,7 +9,6 @@ exports.seed = function(knex) {
         // Inserts seed entries
         return knex("users").insert([
           {
-            id: 1,
             first_name: "james",
             last_name: "last",
             password: bcrypt.hashSync("password", 10),
@@ -18,11 +17,10 @@ exports.seed = function(knex) {
             vehicle_no: "he82d2"
           },
           {
-            id: 2,
-            first_name: "james",
-            last_name: "last",
+            first_name: "Irving",
+            last_name: "Duran",
             password: bcrypt.hashSync("password", 10),
-            email: "jadmses@gmail.com",
+            email: "irving@gmail.com",
             vehicle_type: "car",
             vehicle_no: "he82d2"
           }

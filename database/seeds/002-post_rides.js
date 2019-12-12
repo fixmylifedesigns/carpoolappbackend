@@ -7,7 +7,6 @@ exports.seed = function(knex) {
         // Inserts seed entries
         return knex("post_rides").insert([
           {
-            id: 1,
             user_id: 1,
             vehicle_type: "car",
             vehicle_no: "he82d2",
@@ -18,9 +17,19 @@ exports.seed = function(knex) {
             taken_seats: 1,
             time: "2018-11-29T00:00:00.000Z",
             availability: true
+          },
+          {
+            user_id: 1,
+            vehicle_type: "car",
+            vehicle_no: "he82d2",
+            description: "I will be outside the building",
+            pick_up: "new jersey",
+            drop_off: "new york",
+            vacant_seats: 3,
+            taken_seats: 1,
+            time: "2018-11-29T06:00:00.000Z",
+            availability: true
           }
-          // { id: 2, colName: "rowValue2" },
-          // { id: 3, colName: "rowValue3" }
         ]);
       })
   );
