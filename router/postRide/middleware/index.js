@@ -9,6 +9,8 @@ module.exports = {
 function prepNewRide(req, res, next) {
     req.body.user_id = req.decodedToken.id
     req.body.availability = 1;
+    req.body.taken_seats = 0
+    console.log(req.body)
     next();
 }
 

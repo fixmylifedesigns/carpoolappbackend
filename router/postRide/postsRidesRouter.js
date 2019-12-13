@@ -2,11 +2,7 @@ const router = require("express").Router();
 
 const Rides = require("./postsRidesModel");
 const restricted = require("../auth/middleware/restrictedMiddleware");
-const {
-  verifyDriver,
-  prepNewRide,
-  verifyPostExist
-} = require("./middleware");
+const { verifyDriver, prepNewRide, verifyPostExist } = require("./middleware");
 
 router.get("/", (req, res) => {
   Rides.getAllPosts()
@@ -20,49 +16,37 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get(
-  "/:id",
-  verifyPostExist,
-  (req, res) => {
-    Rides.findById(req.params.id)
-      .then(post => {
-        res.status(200).json(post);
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ err, message: "we ran into an error retreving the user" });
-      });
-  }
-);
-
-router.post("/", 
-restricted,
- prepNewRide, 
-async (req, res) => {
-  const post = req.body;
-    try {
-      const inserted = await Posts.add(post);
-      res.status(201).json(inserted);
-    } catch (error) {
+router.get("/:id", verifyPostExist, (req, res) => {
+  Rides.findById(req.params.id)
+    .then(post => {
+      res.status(200).json(post);
+    })
+    .catch(err => {
       res
         .status(500)
-        .json({
-          error,
-          message: "we ran into an error posting your ride"
-        });
-  }
+        .json({ err, message: "we ran into an error retreving the user" });
+    });
 });
 
-// router.put("/:id", restricted, verifyPostOwner, (req, res) => {
-//   Rides.update(req.params.id, req.body)
-//     .then(update => {
-//       return res.status(200).json(update);
-//     })
-//     .catch(err => {
-//       res.status(500).json({ err, message: "error updating your post" });
-//     });
-// });
+router.post("/", restricted, prepNewRide, (req, res) => {
+  Rides.add(req.body)
+    .then(update => {
+      return res.status(201).json(update);
+    })
+    .catch(err => {
+      res.status(500).json({ err, message: "error updating your post" });
+    });
+});
+
+router.put("/:id", restricted, verifyDriver, (req, res) => {
+  Rides.update(req.params.id, req.body)
+    .then(update => {
+      return res.status(200).json({ message: "Update complete", update });
+    })
+    .catch(err => {
+      res.status(500).json({ err, message: "error updating your post" });
+    });
+});
 
 router.delete("/:id", restricted, verifyDriver, (req, res) => {
   Rides.remove(req.params.id)
