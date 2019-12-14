@@ -32,7 +32,9 @@ exports.up = function(knex) {
 
     tbl.integer("taken_seats").notNullable();
 
-    tbl.date("time").notNullable();
+    tbl.date("date").notNullable();
+
+    tbl.time("time")
 
     tbl.boolean("availability");
 
