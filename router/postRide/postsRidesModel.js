@@ -20,6 +20,7 @@ let selected = [
   "vacant_seats",
   "taken_seats",
   "time",
+  "date",
   "availability",
   "post_rides.created_at",
   "post_rides.updated_at",
