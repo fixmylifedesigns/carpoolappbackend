@@ -15,7 +15,8 @@ exports.seed = function(knex) {
             drop_off: "new jersey",
             vacant_seats: 3,
             taken_seats: 1,
-            time: "2018-11-29T00:00:00.000Z",
+            date: "2018-11-29T00:00:00.000Z",
+            time: "21:00:00",
             availability: true
           },
           {
@@ -27,7 +28,8 @@ exports.seed = function(knex) {
             drop_off: "new york",
             vacant_seats: 3,
             taken_seats: 1,
-            time: "2018-11-29T00:00:00.000Z",
+            date: "2018-11-29T00:00:00.000Z",
+            time: "21:00:00",
             availability: true
           }
         ]);

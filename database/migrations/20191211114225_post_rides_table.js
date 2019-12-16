@@ -34,7 +34,7 @@ exports.up = function(knex) {
 
     tbl.date("date").notNullable();
 
-    tbl.time("time")
+    tbl.time("time").notNullable()
 
     tbl.boolean("availability");
 
