@@ -33,9 +33,8 @@ router.get("/", restricted, (req, res) => {
           user.posted_rides = [];
         } else {
           user.posted_rides = rides;
-        }
+        } return res.status(200).json(user);
       });
-      return res.status(200).json(user);
     })
     .catch(err => {
       res
