@@ -14,7 +14,7 @@ function prepBooking(req, res, next) {
     } else if (!ride.availability) {
       res.status(400).json({ message: "No seats available" });
     } else {
-      req.body.passager_id = req.decodedToken.id;
+      req.body.passanger_id = req.decodedToken.id;
       next();
     }
   });

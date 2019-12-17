@@ -81,12 +81,12 @@ router.post("/", restricted, prepBooking, async (req, res) => {
           }
         })
         .catch(err => {
-          res.status(500).json({ err, message: "error updating your post" });
+          res.status(500).json({ err, message: "error updating the ride" });
         });
       // res.status(201).json(inserted);
     })
     .catch(err => {
-      res.status(500).json({ err, message: "error updating your post" });
+      res.status(500).json({ err, message: "error posting your booking" });
     });
 });
 
