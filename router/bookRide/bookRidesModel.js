@@ -6,13 +6,14 @@ module.exports = {
   update,
   getUserPosts,
   getAllPosts,
-  findById
+  findById,
+  findByPassanger
 };
 
 let selected = [
   { id: " booked_rides.id" },
   { ride_id: "post_rides.id" },
-  "booked_rides.passager_id",
+  "booked_rides.passanger_id",
   { passanger_first_name: "passanger.first_name" },
   { passanger_email: "passanger.email" },
   { driver_id: "post_rides.user_id" },
@@ -33,7 +34,7 @@ let selected = [
 
 function getAllPosts() {
   return db("booked_rides")
-    .join("users as passanger", "booked_rides.passager_id", "=", "passanger.id")
+    .join("users as passanger", "booked_rides.passanger_id", "=", "passanger.id")
     .join("post_rides", "booked_rides.ride_id", "=", "post_rides.id")
     .join("users as driver", "post_rides.user_id", "=", "driver.id")
     .select(selected);
@@ -43,7 +44,16 @@ function findById(id) {
   return db("booked_rides")
     .where("booked_rides.id", id)
     .first()
-    .join("users as passanger", "booked_rides.passager_id", "=", "passanger.id")
+    .join("users as passanger", "booked_rides.passanger_id", "=", "passanger.id")
+    .join("post_rides", "booked_rides.ride_id", "=", "post_rides.id")
+    .join("users as driver", "post_rides.user_id", "=", "driver.id")
+    .select(selected);
+}
+
+function findByPassanger(id) {
+  return db("booked_rides")
+    .where("passanger_id", id)
+    .join("users as passanger", "booked_rides.passanger_id", "=", "passanger.id")
     .join("post_rides", "booked_rides.ride_id", "=", "post_rides.id")
     .join("users as driver", "post_rides.user_id", "=", "driver.id")
     .select(selected);
